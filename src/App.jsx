@@ -103,33 +103,34 @@ export default function App() {
     };
     initAuth();
 
-    const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setAuthLoading(false);
-    });
-    return () => unsubscribe();
-  }, []);
+    useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (u) => {
+    setUser(u);
+    setLoading(false); // This STOPS the infinite loading spinner
+  });
+  return () => unsubscribe();
+}, []);
 
   const handleGoogleLogin = async () => {
-    const provider = new GoogleAuthProvider();
-    try {
-      setAuthLoading(true);
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("Google login error:", error);
-      setAuthLoading(false);
-    }
-  };
+  const provider = new GoogleAuthProvider();
+  setLoading(true); // Start spinner
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.error("Google Auth Error:", error);
+    setLoading(false); // Stop spinner if they close the popup
+  }
+};
 
-  const handleGuestLogin = async () => {
-    try {
-      setAuthLoading(true);
-      await signInAnonymously(auth);
-    } catch (error) {
-      console.error("Guest login error:", error);
-      setAuthLoading(false);
-    }
-  };
+const handleGuestLogin = async () => {
+  setLoading(true); // Start spinner
+  try {
+    await signInAnonymously(auth);
+  } catch (error) {
+    console.error("Guest Auth Error:", error);
+    setLoading(false); // Stop spinner if it fails
+  }
+};
 
   const handleLogout = () => signOut(auth);
 
