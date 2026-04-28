@@ -676,9 +676,10 @@ export default function App() {
   );
 };
 
-export default App;
-
 import { createRoot } from 'react-dom/client';
+
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(<App />);
+
+export default App;
