@@ -676,7 +676,8 @@ export default function App() {
   );
 }
 
-export Defalt App
+export defalt App;
+
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('root');
 const root = createRoot(container);
