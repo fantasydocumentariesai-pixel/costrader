@@ -103,13 +103,14 @@ export default function App() {
     };
     initAuth();
 
-    useEffect(() => {
+   useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (u) => {
+    console.log("Auth state changed:", u ? u.uid : "No user");
     setUser(u);
-    setLoading(false); // This line is what kills the green spinner
+    setAuthLoading(false); // This is the line that kills the green spinner
   });
   return () => unsubscribe();
-}, []);
+}, []); 
 
   const handleGoogleLogin = async () => {
   const provider = new GoogleAuthProvider();
