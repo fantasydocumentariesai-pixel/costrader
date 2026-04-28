@@ -106,7 +106,7 @@ export default function App() {
     useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (u) => {
     setUser(u);
-    setLoading(false); // This STOPS the infinite loading spinner
+    setLoading(false); // This line is what kills the green spinner
   });
   return () => unsubscribe();
 }, []);
@@ -123,12 +123,12 @@ export default function App() {
 };
 
 const handleGuestLogin = async () => {
-  setLoading(true); // Start spinner
+  setLoading(true);
   try {
     await signInAnonymously(auth);
   } catch (error) {
     console.error("Guest Auth Error:", error);
-    setLoading(false); // Stop spinner if it fails
+    setLoading(false); // STOP the spinner if it fails!
   }
 };
 
