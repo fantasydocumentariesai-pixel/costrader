@@ -46,6 +46,17 @@ import {
 } from 'firebase/firestore';
 
 // --- Firebase Configuration ---
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA0lXbSn63gZ2u8EvTwA9z0f0AQ-ArGrTY",
+  authDomain: "costrader-d5ced.firebaseapp.com",
+  projectId: "costrader-d5ced",
+  storageBucket: "costrader-d5ced.firebasestorage.app",
+  messagingSenderId: "367686176870",
+  appId: "1:367686176870:web:ad1f90a7b83e4ab372dda7",
+  measurementId: "G-XZN8N8R0CQ"
+};
+
 const firebaseConfig = JSON.parse(__firebase_config);
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
